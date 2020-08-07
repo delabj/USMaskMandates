@@ -1,6 +1,8 @@
 ---
 title: "County Level Mask Mandates"
 output: github_document
+always_allow_html: true
+
 ---
 
 ```{r setup, include=FALSE}
@@ -125,7 +127,7 @@ county_shp is a local shapefile I have, that I'm unsure of distribution rights.
 ```{r}
  valid_states <- unique(mask_mandates$state_fips)
 
-# join to shape fule
+# join to shape file
 plotting_data <- county_shp %>%
   left_join(mask_mandates %>%
               mutate(STATEFP = state_fips,
