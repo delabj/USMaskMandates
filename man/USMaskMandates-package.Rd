@@ -4,9 +4,9 @@
 \name{USMaskMandates-package}
 \alias{USMaskMandates}
 \alias{USMaskMandates-package}
-\title{USMaskMandates: What the Package Does (Title Case)}
+\title{USMaskMandates: Dates of Implemenation of Mask Mandtes in US During COVID19}
 \description{
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+A novel data set collected by students at the Univeristy of Chicago under the direction of of Austin L. Wright.
+    The data is of county level data and was released with the working paper by Austin L. Wright.
 }
 \keyword{internal}

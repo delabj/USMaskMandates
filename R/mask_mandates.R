@@ -1,0 +1,25 @@
+#' Dates of county and state level mask mandates for United States during the COVID-19 pandemic
+#'
+#' Includes start and end dates, as well as conditions and sources for county mask mandates.
+#' Updates and corrections can be made with the original data source at https://forms.gle/DtUSyvHDj9rj1Akq8.
+#'
+#' @format A tibble with 3308 observations of 19 variables:
+#' \describe{
+#' \item{state_fips}{ FIPS code for the state of the observed county}
+#' \item{state_name} {Name of the state of the observed county}
+#' \item{county_fips} {FIPS code for the observed county}
+#' \item{county_name} {Name of the observed county}
+#' \item{county_policy_start} {Start date of the county mask policy}
+#' \item{county_policy_end} {End date of the county mask policy}
+#' \item{county_policy_conditions}{ Specific conditions of the county mask policy}
+#' \item{county_policy_source}{ Source for the county mask policy}
+#' \item{county_policy_escalation}{ Did the county escalate an exsisiting mandate}
+#' \item{county_policy_defiance}{ Is the county publicly defying or refusing to enforce a mandate}
+#' \item{state_policy_start} {Start date of state mask mandate}
+#' \item{state_policy_end} {End date of state mask mandate}
+#' \item{state_policy_conditions}{ Conditions of state mask mandate}
+#' \item{state_policy_source} {source for state mask mandate}
+#' \item{earliest_policy_date} {Earliest date a policy was implemented (same as state if state was first or county if county was before state)}
+#' }
+#'
+"mask_mandates"
