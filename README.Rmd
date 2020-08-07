@@ -1,0 +1,178 @@
+---
+title: "County Level Mask Mandates"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This package exists to allow easier access to the data provided by Austin L. Wright Et Al. in the working paper Tracking Mask Mandates during the COVID-19 Pandemic. 
+
+I had the wonderful opportunity to spend the summer in the University of Chicago DPSS program and worked on the capstone/lab that helped collect and validate the data. I wanted to make the data which was available easier to access for R users. Using this package users can easily make visualizations showing where and when mandates were adopted. 
+
+```{r , echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(USMaskMandates)
+library(sf)
+library(ggtext)
+library(delabj)
+
+county_shp <- read_sf("C:/Users/delabruerejosh/Downloads/shapefiles (1)/cb_2018_us_county_500k/cb_2018_us_county_500k.shp")
+ valid_states <- unique(mask_mandates$state_fips)
+
+
+plotting_data <- county_shp %>%
+  left_join(mask_mandates %>%
+              mutate(STATEFP = state_fips,
+                     COUNTYFP = stringr::str_sub(county_fips, -3, -1))) %>%
+  filter(!c(state_fips %in% c("02", "15" ,"11", "60", "66", "69", "72", "78")), 
+         STATEFP %in% valid_states, 
+         !is.na(state_fips)) %>% arrange(state_name)
+
+ggplot(plotting_data)+
+  geom_sf(aes(fill = is.na(earliest_policy_date)), 
+          size = 0.1)+
+  labs(
+    title = "US Counties <span style = 'color:#1b9e77'> With </span> And <span style = 'color:#d95f02'>Without</span> Mask Mandates",
+    subtitle = "On Augest 4th 2020"
+    )+
+theme_minimal()+
+  theme(plot.title = element_markdown(), 
+        axis.text = element_blank(), 
+        plot.title.position = "plot")+
+  delabj::gridlines_off()+
+  delabj::legend_none()+
+  scale_fill_manual(values = c("#d95f02", "#1b9e77"))
+
+
+```
+
+## Installation
+
+This package is currently only available via github. 
+
+You can install it from [Github](github.com) using the following commands
+
+``` r 
+#install using devtools
+devtools::install_github("delabj/USMaskMandates)
+
+#install using remotes
+remotes::install_github("delabj/USMaskMandates)
+
+```
+
+## About the data
+
+Data were collected and refined by students and staff at the University of Chicago, led by Austin L. Wright. In particular the data was collected and validated by two labs of students, the IPAL Lab, and the DPSS Lab. As the data is ever changing, [corrections and revisions can be recommended to the original data authors via a form. ](https://docs.google.com/forms/u/2/d/e/1FAIpQLSfi4NTKH8_kFD8hb7_oWdcY2pIp9_YEbwvGs7kLmqU99_rQvw/viewform?usp=send_form) 
+
+Two data sets are provided. One is called `mask_mandates` and the other `raw_mandates`. 
+
+### Raw Mandates
+
+This data set comes directly from the raw data provided by the paper authors. See `?raw_mandates` for specific details. 
+
+The following is a sampling of the data from this source.
+```{r}
+raw_mandates[sample(nrow(raw_mandates), 10),] 
+```
+
+### Mask Mandates
+
+I've taken the liberty of cleaning the data, by adding appropriate padding to FIPS codes, standardizing data formats and dropping duplicate columns. More details can be found by using `?mask_mandates` in the R console. 
+
+The following is a sample of random rows from the cleaned data
+```{r}
+mask_mandates[sample(nrow(mask_mandates), 10),] 
+```
+
+
+## Examples
+
+
+### Least Compliant States
+```{r}
+mask_mandates %>%
+  mutate(defy_status = if_else(is.na(county_policy_defiance), "Comply", "Defy" )) %>%
+  group_by(state_name, defy_status) %>%
+  count() %>% 
+  pivot_wider(names_from = defy_status, values_from = n ) %>%
+  transmute(Comply = replace_na(Comply, 0),
+    Defy   = replace_na(Defy, 0),
+    percent_compliant = Comply/(Comply+Defy), 
+    state = state_name) %>%
+  na.omit() %>%
+  arrange(percent_compliant) %>%
+  head( 10) %>%
+  ggplot(aes(y= forcats::fct_reorder(state, percent_compliant), 
+             x=percent_compliant, 
+             fill = forcats::fct_reorder(state, percent_compliant)))+
+  geom_col()+
+  labs(title = "10 Least Compliant States", 
+       y=NULL)+
+  theme_minimal()+
+  delabj::scale_fill_delabj()+
+  delabj::legend_none()+
+  theme(plot.title.position = "plot")
+         
+```
+
+###  Map By Date
+
+county_shp is a local shapefile I have, that I'm unsure of distribution rights. 
+
+```{r}
+ valid_states <- unique(mask_mandates$state_fips)
+
+# join to shape fule
+plotting_data <- county_shp %>%
+  left_join(mask_mandates %>%
+              mutate(STATEFP = state_fips,
+                     COUNTYFP = stringr::str_sub(county_fips, -3, -1))) %>%
+# Filter out non lower 48 states
+  filter(!c(state_fips %in% c("02", "15" ,"11", "60", "66", "69", "72", "78")), 
+         STATEFP %in% valid_states, 
+         !is.na(state_fips)) %>% arrange(state_name)
+
+ggplot(plotting_data)+
+  geom_sf(aes(fill = earliest_policy_date), 
+          size = 0.1)+
+  labs(
+    title = "Mask Mandate Starting Dates",
+    subtitle = "as of Augest 4th 2020", 
+    fill = "Mandate Start Date"
+    )+
+theme_minimal()+
+  theme(plot.title = element_markdown(), 
+        axis.text = element_blank(), 
+        plot.title.position = "plot")+
+  delabj::gridlines_off()+
+  scale_fill_date(low = "#8856a7",
+                  high = "#e0ecf4", 
+                  na.value = "#fc8d59")+
+  theme(legend.position = c(.15,.15), 
+        legend.direction = "horizontal")+
+  guides(fill = guide_colorbar(title.position = "top", 
+                               title.hjust = 0, 
+                               barwidth = 10, 
+                               frame.colour = "black") 
+         )
+```
+
+
+
+## Additional data use information
+In order to make this data more accessible, Austin L. Wright. Published this data  [With their COVID-19 research.](remotes::install_github("delabj/USMaskMandates) They ask that anyone using this data cite the working paper and acknowledge the source of the data. I have provided a link and citation below for the working paper. 
+
+
+## References
+
+[Data Release and Working Paper:](https://bfi.uchicago.edu/wp-content/uploads/BFI_WP_2020104.pdf)
+
++ Wright, Austin L. and Chawla, Geet and Chen, Luke and Farmer, Anthony, Tracking Mask Mandates During the Covid-19 Pandemic (August 4, 2020). University of Chicago, Becker Friedman Institute for Economics Working Paper No. 2020-104, Available at SSRN: https://ssrn.com/abstract=3667149
+
+
+[Related Paper on Mask Use and Partisanship:](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3664779)
+
++ Milosh, Maria and Painter, Marcus and Van Dijcke, David and Wright, Austin L., Unmasking Partisanship: How Polarization Influences Public Responses to Collective Risk (July 31, 2020). University of Chicago, Becker Friedman Institute for Economics Working Paper No. 2020-102, Available at SSRN: https://ssrn.com/abstract=3664779 or http://dx.doi.org/10.2139/ssrn.3664779
