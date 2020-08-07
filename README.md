@@ -54,16 +54,16 @@ raw_mandates[sample(nrow(raw_mandates), 10),]
     ## # A tibble: 10 x 19
     ##    state_fips state_name county_fips county_name county_mask_pol~
     ##         <int> <chr>            <int> <chr>       <chr>           
-    ##  1         39 OHIO             39083 Knox County 23Jul2020       
-    ##  2         12 FLORIDA          12029 Dixie Coun~ <NA>            
-    ##  3         48 TEXAS            48319 Mason Coun~ <NA>            
-    ##  4         42 PENNSYLVA~       42121 Venango Co~ 01Jul2020       
-    ##  5         48 TEXAS            48019 Bandera Co~ 02Jul2020       
-    ##  6         26 MICHIGAN         26031 Cheboygan ~ 27Apr2020       
-    ##  7         48 TEXAS            48183 Gregg Coun~ 02Jul2020       
-    ##  8         31 NEBRASKA         31049 Deuel Coun~ <NA>            
-    ##  9         39 OHIO             39119 Muskingum ~ 23Jul2020       
-    ## 10         54 WEST VIRG~       54095 Tyler Coun~ 07Jul2020       
+    ##  1         19 IOWA             19053 Decatur Co~ <NA>            
+    ##  2         39 OHIO             39131 Pike County 23Jul2020       
+    ##  3         55 WISCONSIN        55035 Eau Claire~ <NA>            
+    ##  4         55 WISCONSIN        55129 Washburn C~ <NA>            
+    ##  5         13 GEORGIA          13029 Bryan Coun~ <NA>            
+    ##  6         45 SOUTH CAR~       45071 Newberry C~ 01Jul2020       
+    ##  7          6 CALIFORNIA        6049 Modoc Coun~ <NA>            
+    ##  8         48 TEXAS            48323 Maverick C~ 02Jul2020       
+    ##  9         40 OKLAHOMA         40097 Mayes Coun~ <NA>            
+    ## 10         13 GEORGIA          13049 Charlton C~ <NA>            
     ## # ... with 14 more variables: county_mask_policy_end <chr>,
     ## #   county_conditions <chr>, county_source <chr>, county_escalation <chr>,
     ## #   county_defiance <chr>, county_edate <int>, state_mask_policy_start <chr>,
@@ -87,16 +87,16 @@ mask_mandates[sample(nrow(mask_mandates), 10),]
     ## # A tibble: 10 x 15
     ##    state_fips state_name county_fips country_name county_policy_s~
     ##    <chr>      <chr>      <chr>       <chr>        <date>          
-    ##  1 55         Wisconsin  55099       Price County NA              
-    ##  2 54         West Virg~ 54029       Hancock Cou~ 2020-07-20      
-    ##  3 22         Louisiana  22127       Winn Parish  NA              
-    ##  4 22         Louisiana  22105       Tangipahoa ~ NA              
-    ##  5 38         North Dak~ 38035       Grand Forks~ NA              
-    ##  6 48         Texas      48241       Jasper Coun~ 2020-02-20      
-    ##  7 21         Kentucky   21235       Whitley Cou~ 2020-10-20      
-    ##  8 51         Virginia   51013       Arlington C~ NA              
-    ##  9 37         North Car~ 37005       Alleghany C~ NA              
-    ## 10 13         Georgia    13185       Lowndes Cou~ NA              
+    ##  1 40         Oklahoma   40123       Pontotoc Co~ NA              
+    ##  2 29         Missouri   29081       Harrison Co~ NA              
+    ##  3 40         Oklahoma   40025       Cimarron Co~ NA              
+    ##  4 17         Illinois   17039       De Witt Cou~ NA              
+    ##  5 12         Florida    12093       Okeechobee ~ NA              
+    ##  6 23         Maine      23031       York County  NA              
+    ##  7 20         Kansas     20037       Crawford Co~ 2020-03-20      
+    ##  8 01         Alabama    01117       Shelby Coun~ 2020-07-20      
+    ##  9 13         Georgia    13173       Lanier Coun~ NA              
+    ## 10 17         Illinois   17203       Woodford Co~ 2020-01-20      
     ## # ... with 10 more variables: county_policy_end <date>,
     ## #   county_policy_conditions <chr>, county_policy_source <chr>,
     ## #   county_policy_defiance <chr>, county_policy_escalation <chr>,

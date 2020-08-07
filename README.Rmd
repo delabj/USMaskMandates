@@ -34,7 +34,7 @@ ggplot(plotting_data)+
   geom_sf(aes(fill = is.na(earliest_policy_date)), 
           size = 0.1)+
   labs(
-    title = "US Counties <span style = 'color:#1b9e77'> With </span> And <span style = 'color:#d95f02'>Without</span> Mask Mandates",
+    title = "US Counties <span style = 'color:#d95f02'> With </span> And <span style = 'color:#1b9e77'>Without</span> Mask Mandates",
     subtitle = "On Augest 4th 2020"
     )+
 theme_minimal()+
