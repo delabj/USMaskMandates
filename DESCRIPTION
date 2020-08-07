@@ -2,7 +2,18 @@ Package: USMaskMandates
 Type: Package
 Title: Dates of Implemenation of Mask Mandtes in US During COVID19
 Version: 0.1.0
-Author: Joshua de la Bruere
+Authors@R: c(
+  person("Joshua",
+        "de la Bruere",
+         role = c("aut", "cre"), 
+         email = "joshua@delabj.com",
+         comment = c(ORCID = "0000-0003-3819-6806")
+         ), 
+  person('Austin', 
+         "L.",
+         "Wright", 
+          role = c("aut"))
+         )
 Maintainer: Joshua de la Bruere <joshua@delabj.com>
 Description: A novel data set collected by students at the Univeristy of Chicago under the direction of of Austin L. Wright.
     The data is of county level data and was released with the working paper by Austin L. Wright.
