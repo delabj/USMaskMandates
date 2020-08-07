@@ -186,7 +186,7 @@ theme_minimal()+
 
 ## Additional data use information
 
-In order to make this data more accessible, Austin L. Wright. Published
+In order to make this data more accessible, Austin L. Wright published
 this data \[With their COVID-19
 research.\](remotes::install\_github("delabj/USMaskMandates) They ask
 that anyone using this data cite the working paper and acknowledge the
