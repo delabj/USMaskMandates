@@ -187,8 +187,8 @@ theme_minimal()+
 ## Additional data use information
 
 In order to make this data more accessible, Austin L. Wright. Published
-this data \[With their COVID-19
-research.\](remotes::install\_github("delabj/USMaskMandates) They ask
+this data [With their COVID-19
+research.](https://www.austinlwright.com/covid-research) They ask
 that anyone using this data cite the working paper and acknowledge the
 source of the data. I have provided a link and citation below for the
 working paper.
