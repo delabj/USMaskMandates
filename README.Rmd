@@ -35,7 +35,7 @@ ggplot(plotting_data)+
           size = 0.1)+
   labs(
     title = "US Counties <span style = 'color:#d95f02'> With </span> And <span style = 'color:#1b9e77'>Without</span> Mask Mandates",
-    subtitle = "On Augest 4th 2020"
+    subtitle = "On August 4th 2020"
     )+
 theme_minimal()+
   theme(plot.title = element_markdown(), 
@@ -140,7 +140,7 @@ ggplot(plotting_data)+
           size = 0.1)+
   labs(
     title = "Mask Mandate Starting Dates",
-    subtitle = "as of Augest 4th 2020", 
+    subtitle = "as of August 4th 2020", 
     fill = "Mandate Start Date"
     )+
 theme_minimal()+

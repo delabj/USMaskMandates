@@ -54,16 +54,16 @@ raw_mandates[sample(nrow(raw_mandates), 10),]
     ## # A tibble: 10 x 19
     ##    state_fips state_name county_fips county_name county_mask_pol~
     ##         <int> <chr>            <int> <chr>       <chr>           
-    ##  1         19 IOWA             19053 Decatur Co~ <NA>            
-    ##  2         39 OHIO             39131 Pike County 23Jul2020       
-    ##  3         55 WISCONSIN        55035 Eau Claire~ <NA>            
-    ##  4         55 WISCONSIN        55129 Washburn C~ <NA>            
-    ##  5         13 GEORGIA          13029 Bryan Coun~ <NA>            
-    ##  6         45 SOUTH CAR~       45071 Newberry C~ 01Jul2020       
-    ##  7          6 CALIFORNIA        6049 Modoc Coun~ <NA>            
-    ##  8         48 TEXAS            48323 Maverick C~ 02Jul2020       
-    ##  9         40 OKLAHOMA         40097 Mayes Coun~ <NA>            
-    ## 10         13 GEORGIA          13049 Charlton C~ <NA>            
+    ##  1         40 OKLAHOMA         40073 Kingfisher~ <NA>            
+    ##  2         48 TEXAS            48377 Presidio C~ 02Jul2020       
+    ##  3         18 INDIANA          18091 La Porte C~ 16Jul2020       
+    ##  4         13 GEORGIA          13129 Gordon Cou~ <NA>            
+    ##  5         41 OREGON           41029 Jackson Co~ 01Jul2020       
+    ##  6         54 WEST VIRG~       54011 Cabell Cou~ 07Jul2020       
+    ##  7         30 MONTANA          30077 Powell Cou~ <NA>            
+    ##  8          6 CALIFORNIA        6077 San Joaqui~ <NA>            
+    ##  9         NA <NA>                NA 22098       <NA>            
+    ## 10         47 TENNESSEE        47011 Bradley Co~ <NA>            
     ## # ... with 14 more variables: county_mask_policy_end <chr>,
     ## #   county_conditions <chr>, county_source <chr>, county_escalation <chr>,
     ## #   county_defiance <chr>, county_edate <int>, state_mask_policy_start <chr>,
@@ -87,16 +87,16 @@ mask_mandates[sample(nrow(mask_mandates), 10),]
     ## # A tibble: 10 x 15
     ##    state_fips state_name county_fips country_name county_policy_s~
     ##    <chr>      <chr>      <chr>       <chr>        <date>          
-    ##  1 40         Oklahoma   40123       Pontotoc Co~ NA              
-    ##  2 29         Missouri   29081       Harrison Co~ NA              
-    ##  3 40         Oklahoma   40025       Cimarron Co~ NA              
-    ##  4 17         Illinois   17039       De Witt Cou~ NA              
-    ##  5 12         Florida    12093       Okeechobee ~ NA              
-    ##  6 23         Maine      23031       York County  NA              
-    ##  7 20         Kansas     20037       Crawford Co~ 2020-03-20      
-    ##  8 01         Alabama    01117       Shelby Coun~ 2020-07-20      
-    ##  9 13         Georgia    13173       Lanier Coun~ NA              
-    ## 10 17         Illinois   17203       Woodford Co~ 2020-01-20      
+    ##  1 18         Indiana    18055       Greene Coun~ NA              
+    ##  2 53         Washington 53033       King County  NA              
+    ##  3 35         New Mexico 35061       Valencia Co~ NA              
+    ##  4 29         Missouri   29051       Cole County  NA              
+    ##  5 25         Massachus~ 25019       Nantucket C~ 2020-06-20      
+    ##  6 51         Virginia   51047       Culpeper Co~ NA              
+    ##  7 37         North Car~ 37157       Rockingham ~ NA              
+    ##  8 18         Indiana    18107       Montgomery ~ NA              
+    ##  9 <NA>       <NA>       <NA>        22098        NA              
+    ## 10 45         South Car~ 45061       Lee County   2020-08-20      
     ## # ... with 10 more variables: county_policy_end <date>,
     ## #   county_policy_conditions <chr>, county_policy_source <chr>,
     ## #   county_policy_defiance <chr>, county_policy_escalation <chr>,
@@ -162,7 +162,7 @@ ggplot(plotting_data)+
           size = 0.1)+
   labs(
     title = "Mask Mandate Starting Dates",
-    subtitle = "as of Augest 4th 2020", 
+    subtitle = "as of August 4th 2020", 
     fill = "Mandate Start Date"
     )+
 theme_minimal()+
@@ -186,7 +186,7 @@ theme_minimal()+
 
 ## Additional data use information
 
-In order to make this data more accessible, Austin L. Wright published
+In order to make this data more accessible, Austin L. Wright. Published
 this data \[With their COVID-19
 research.\](remotes::install\_github("delabj/USMaskMandates) They ask
 that anyone using this data cite the working paper and acknowledge the
