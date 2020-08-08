@@ -21,7 +21,7 @@ raw_mandates_df %>%
   transmute(state_fips   = stringr::str_pad(state_fips, width = 2, pad = "0"),
             state_name   = stringr::str_to_title(state_name),
             county_fips  = stringr::str_pad(county_fips, width = 5, pad ="0"),
-            country_name = stringr::str_to_title(county_name),
+            county_name = stringr::str_to_title(county_name),
             county_policy_start = lubridate::mdy(county_mask_policy_start),
             county_policy_end   = lubridate::mdy(county_mask_policy_end),
             county_policy_conditions = county_conditions,
